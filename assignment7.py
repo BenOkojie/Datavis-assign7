@@ -41,6 +41,7 @@ fig.update_layout(
 )
 
 app = dash.Dash()
+server=app.server
 app.layout = html.Div([
     html.H1("World cup Map", style={"textAlign": "center"}),
 
