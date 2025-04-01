@@ -33,7 +33,7 @@ fig = px.choropleth(
     color="Winners",
     color_continuous_scale="Viridis",
     scope="world",
-    title="Choropleth Map"
+    title="World cup winners"
 )
 fig.update_layout(
     width=1000,
@@ -43,9 +43,10 @@ fig.update_layout(
 app = dash.Dash()
 server=app.server
 app.layout = html.Div([
-    html.H1("World cup Map", style={"textAlign": "center"}),
+    html.H1("World Cup Map", style={"textAlign": "center"}),
 
     html.Div([
+        
         html.Div([
             html.Label("Select a Year:", style={"marginTop": "20px"}),
             dcc.Dropdown(
@@ -60,19 +61,30 @@ app.layout = html.Div([
                 "fontSize": "18px"
             })
         ], style={
-            "width": "20%",
-            "padding": "20px",
+            "flex": "1",
+            "padding": "10px",
             "borderRight": "1px solid #ccc",
-            "boxSizing": "border-box"
+            "minWidth": "200px",
+            "maxWidth": "300px",
+            "boxSizing": "border-box",
+            "overflowY": "auto"
         }),
 
+  
         html.Div([
-            dcc.Graph(id="world-map", figure=fig, style={"height": "80vh", "width": "100%"})
+            dcc.Graph(id="world-map", figure=fig, style={
+                "height": "100%",
+                "width": "100%",
+                "justifyContent": "center",
+                "alignItems": "center"
+            })
         ], style={
-            "width": "50%",
-            "padding": "10px"
+            "flex": "2",
+            "padding": "10px",
+            "minWidth": "300px",
+            "boxSizing": "border-box",
+            "overflow": "hidden"
         }),
-
         html.Div([
             html.H3("Selected Country Info"),
             html.Div(id="country-output", style={
@@ -80,18 +92,21 @@ app.layout = html.Div([
                 "fontSize": "18px"
             })
         ], style={
-            "width": "20%",
-            "padding": "20px",
+            "flex": "1",
+            "padding": "10px",
             "borderLeft": "1px solid #ccc",
+            "minWidth": "200px",
+            "maxWidth": "300px",
             "boxSizing": "border-box",
-            "height": "80vh",
             "overflowY": "auto"
         })
     ], style={
         "display": "flex",
         "flexDirection": "row",
+        "flexWrap": "wrap",
+        "height": "85vh",
         "width": "100%",
-        "marginTop": "20px"
+        "boxSizing": "border-box"
     })
 ])
 @app.callback(
